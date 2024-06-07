@@ -22,6 +22,7 @@
 
 package sqli.main.java.org.owasp.webgoat.lessons.sqlinjection.introduction;
 
+import java.sql.PreparedStatement;
 import org.owasp.webgoat.container.LessonDataSource;
 import org.owasp.webgoat.container.assignments.AssignmentEndpoint;
 import org.owasp.webgoat.container.assignments.AssignmentHints;
@@ -53,16 +54,19 @@ public class SqlInjectionLesson5a extends AssignmentEndpoint {
     }
 
     protected AttackResult injectableQuery(String login_count, String accountName) {
-        String queryString = "SELECT * From user_data WHERE Login_Count = ? and userid= " + accountName;
-        try (Connection connection = dataSource.getConnection()) {
-            //comment
-
-            PreparedStatement query = connection.prepareStatement(queryString, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            int count = 0;
-            try {
-                count = Integer.parseInt(login_count);
-            } catch (Exception e) {
-                return failed(this).output("Could not parse: " + login_count + " to a number"
+    String queryString = "SELECT * From user_data WHERE Login_Count = ? and userid= ?";
+    try (Connection connection = dataSource.getConnection()) {
+        PreparedStatement query = connection.prepareStatement(queryString, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        query.setString(1, login_count);
+        query.setString(2, accountName);
+        int count = 0;
+        try {
+            count = Integer.parseInt(login_count);
+        } catch (Exception e) {
+            return failed(this).output("Could not parse: " + login_count + " to a number");
+        }
+        // rest of the code
+    }
                         + "<br> Your query was: " + queryString.replace("?", login_count)).build();
             }
 
