@@ -23,7 +23,7 @@
     "severityThreshold": "low"
   },
   "issueSettingsSAST": {
-    "minSeverityLevel": "high",
+    "minSeverityLevel": "low",
     "issueType": "repo"
   },
   "issueSettings": {
