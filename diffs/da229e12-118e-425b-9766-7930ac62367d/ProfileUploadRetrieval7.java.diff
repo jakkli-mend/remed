@@ -93,11 +93,11 @@
 @@ -88,1 +89,6 @@
 -            (new File(request.getParameter("id"))).exists();
 +      String filePath = request.getParameter("id");
-+      String normalizedPath = new File(filePath).getCanonicalPath();
-+      if (!normalizedPath.startsWith(new File(BASE_DIRECTORY).getCanonicalPath())) {
-+        return ResponseEntity.badRequest().body("Error: Attempt to access file outside of the base directory.");
++      String normalizedPath = Paths.get(filePath).normalize().toString();
++      if (normalizedPath.contains("..")) {
++        return ResponseEntity.badRequest().body("Illegal characters are not allowed in the file path");
 +      }
-+      (new File(filePath)).exists();
++      (new File(normalizedPath)).exists();
  
  //            if (catPicture.getName().toLowerCase().contains("path-traversal-secret.jpg")) {
  //                return ResponseEntity.ok()
