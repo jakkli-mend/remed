@@ -90,15 +90,14 @@
  //            var id = request.getParameter("id");
              // comment
              // comment 2
-@@ -88,1 +89,7 @@
+@@ -88,1 +89,6 @@
 -            (new File(request.getParameter("id"))).exists();
 +      String filePath = request.getParameter("id");
-+      File file = new File(filePath);
-+      String normalizedPath = file.getCanonicalPath();
++      String normalizedPath = new File(filePath).getCanonicalPath();
 +      if (!normalizedPath.startsWith(new File(BASE_DIRECTORY).getCanonicalPath())) {
 +        return ResponseEntity.badRequest().body("Error: Attempt to access file outside of the base directory.");
 +      }
-+      file.exists();
++      (new File(filePath)).exists();
  
  //            if (catPicture.getName().toLowerCase().contains("path-traversal-secret.jpg")) {
  //                return ResponseEntity.ok()
