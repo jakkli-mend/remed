@@ -97,7 +97,7 @@
 +      if (!normalizedPath.startsWith(new File(BASE_DIRECTORY).getCanonicalPath())) {
 +        return ResponseEntity.badRequest().body("Error: Attempt to access file outside of the base directory.");
 +      }
-+      (new File(filePath)).exists();
++      (new File(normalizedPath)).exists();
  
  //            if (catPicture.getName().toLowerCase().contains("path-traversal-secret.jpg")) {
  //                return ResponseEntity.ok()
