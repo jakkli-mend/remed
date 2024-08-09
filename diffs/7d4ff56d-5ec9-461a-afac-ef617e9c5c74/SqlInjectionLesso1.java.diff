@@ -55,12 +55,16 @@
          return injectableQuery(login_count, userid);
      }
  
-     protected AttackResult injectableQuery(String login_count, String accountName) {
-@@ -56,14 +56,12 @@
+@@ -55,4 +55,3 @@
+-    protected AttackResult injectableQuery(String login_count, String accountName) {
 -        String queryString = "SELECT * From user_data WHERE Login_Count = ? and userid= " + accountName;
 -        try (Connection connection = dataSource.getConnection()) {
 -            //comment
--
++    String queryString = "SELECT * From user_data WHERE Login_Count = ? and userid= ?";
++    try (Connection connection = dataSource.getConnection()) {
++        //comment
+ 
+@@ -60,8 +59,8 @@
 -            PreparedStatement query = connection.prepareStatement(queryString, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 -            int count = 0;
 -            try {
@@ -69,10 +73,6 @@
 -                return failed(this).output("Could not parse: " + login_count + " to a number"
 -                        + "<br> Your query was: " + queryString.replace("?", login_count)).build();
 -            }
--
--            query.setInt(1, count);
-+    String queryString = "SELECT * From user_data WHERE Login_Count = ? and userid= ?";
-+    try (Connection connection = dataSource.getConnection()) {
 +        PreparedStatement query = connection.prepareStatement(queryString, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 +        int count = 0;
 +        try {
@@ -81,6 +81,9 @@
 +            return failed(this).output("Could not parse: " + login_count + " to a number"
 +                    + "<br> Your query was: " + queryString.replace("?", login_count)).build();
 +        }
+ 
+@@ -69,1 +68,2 @@
+-            query.setInt(1, count);
 +        query.setInt(1, count);
 +        query.setString(2, accountName);
              //String query = "SELECT * FROM user_data WHERE Login_Count = " + login_count + " and userid = " + accountName, ;
