@@ -11,7 +11,7 @@
     "incrementalScan": true,
     "enableRemediation": true,
     "baseBranches": [],
-    "snippetSize": 16
+    "snippetSize": 17
   },
   "checkRunSettings": {
     "vulnerableCheckRunConclusionLevel": "failure",
