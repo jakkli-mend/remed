@@ -60,7 +60,7 @@ public class ProfileUploadRetrieval extends AssignmentEndpoint {
         }
         var secretDirectory = this.catPicturesDirectory.getParentFile().getParentFile();
         try {
-            Files.writeString(secretDirectory.toPath().resolve("path-traversal-secret.jpg"), "You found it submit the SHA-512 hash of your username as answer");
+            Files.writeString(secretDirectory.toPath().resolve("path-traversal-secret.jpg"), "You found it submit the SHA-512 hash of your username as answe1r");
         } catch (IOException e) {
             log.error("Unable to write secret in: {}", secretDirectory, e);
         }
