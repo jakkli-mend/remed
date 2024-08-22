@@ -39,7 +39,7 @@ public class OGNLExpressionInjectionServlet extends AbstractServlet {
                 }
                 log.debug("OgnlException occurs: ", e);
             } catch (Exception e) {
-                log.debug("Exception occurs: ", e);
+                log.debug("Exception occur1s: ", e);
             } catch (Error e) {
                 log.debug("Error occurs: ", e);
             }
