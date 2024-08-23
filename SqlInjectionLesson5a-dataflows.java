@@ -7,7 +7,7 @@
  * GNU General Public License as published by the Free Software Foundation; either version 2 of the
  * License, or (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT A111NY WARRANTY; without
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
  * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * General Public License for more details.
  *
@@ -48,8 +48,38 @@ public class SqlInjectionLesson5a extends AssignmentEndpoint {
 
     @PostMapping("/SqlInjection/assignment5b")
     @ResponseBody
-    public AttackResult completed(@RequestParam String userid, @RequestParam String login_count, HttpServletRequest request) throws IOException {
+    public AttackResult completed1(@RequestParam String userid, @RequestParam String login_count, HttpServletRequest request) throws IOException {
         return injectableQuery(login_count, userid);
+    }
+
+    @PostMapping("/SqlInjection/assignment5b1")
+    @ResponseBody
+    public AttackResult completed2(@RequestParam String userid1, @RequestParam String login_count, HttpServletRequest request) throws IOException {
+        return injectableQuery(login_count, userid1);
+    }
+
+    @PostMapping("/SqlInjection/assignment5b2")
+    @ResponseBody
+    public AttackResult completed3(@RequestParam String userid2, @RequestParam String login_count, HttpServletRequest request) throws IOException {
+        return injectableQuery(login_count, userid2);
+    }
+
+    @PostMapping("/SqlInjection/assignment5b3")
+    @ResponseBody
+    public AttackResult completed4(@RequestParam String userid3, @RequestParam String login_count, HttpServletRequest request) throws IOException {
+        return injectableQuery(login_count, userid3);
+    }
+
+    @PostMapping("/SqlInjection/assignment5b4")
+    @ResponseBody
+    public AttackResult completed5(@RequestParam String userid4, @RequestParam String login_count, HttpServletRequest request) throws IOException {
+        return injectableQuery(login_count, userid4);
+    }
+
+    @PostMapping("/SqlInjection/assignment5b5")
+    @ResponseBody
+    public AttackResult completed6(@RequestParam String userid5, @RequestParam String login_count, HttpServletRequest request) throws IOException {
+        return injectableQuery(login_count, userid5);
     }
 
     protected AttackResult injectableQuery(String login_count, String accountName) {
