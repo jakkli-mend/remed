@@ -10,16 +10,16 @@
  
  namespace OWASP.WebGoat.NET
  {
- 	public partial class ProxySetup : System.Web.UI.Page
+@@ -10,1 +10,1 @@
+-	public partial class ProxySetup : System.Web.UI.Page
++lblOutput.Text = "Thank you for using WebGoat.NET " + HttpUtility.HtmlEncode(reverse(name));
  	{
  		protected void btnReverse_Click(object sender, EventArgs e)
          {
          
              var name = txtName.Text;
              txtName.Text = "";
-@@ -17,1 +17,1 @@
--            lblOutput.Text = "Thank you for using WebGoat.NET " + reverse(name);
-+            lblOutput.Text = "Thank you for using WebGoat.NET " + HttpUtility.HtmlEncode(reverse(name));
+             lblOutput.Text = "Thank you for using WebGoat.NET " + reverse(name);
          
          }
          
