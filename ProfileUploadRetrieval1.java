@@ -1,5 +1,6 @@
 package org.owasp.webgoat.lessons.pathtraversal;
 
+import java.nio.file.Path;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomUtils;
 import org.owasp.webgoat.container.assignments.AssignmentEndpoint;
@@ -65,27 +66,34 @@ public class ProfileUploadRetrieval extends AssignmentEndpoint {
         }
     }
 
-    @PostMapping("/PathTraversal/random")
+    @PostMapping("/PathTraversal/random2")
     @ResponseBody
-    public AttackResult execute(@RequestParam(value = "secret", required = false) String secret) {
+    public AttackResult execute2(@RequestParam(value = "secret", required = false) String secret) {
         if (Sha512DigestUtils.shaHex(getWebSession().getUserName()).equalsIgnoreCase(secret)) {
             return success(this).build();
         }
         return failed(this).build();
     }
 
-    @GetMapping("/PathTraversal/random-picture")
+    @GetMapping("/PathTraversal/random-picture3")
     @ResponseBody
-    public ResponseEntity<?> getProfilePicture(HttpServletRequest request) {
+    public ResponseEntity<?> getProfilePicture3(HttpServletRequest request) {
         var queryParams = request.getQueryString();
         if (queryParams != null && (queryParams.contains("..") || queryParams.contains("/"))) {
             return ResponseEntity.badRequest().body("Illegal characters are not allowed in the query params");
         }
         try {
 //            var id = request.getParameter("id");
-            // comment
+            // comment 222222222222222
             // comment 2
-            (new File(request.getParameter("id"))).exists();
+            // sdasdfadsfasd
+            //asdf asdfasdfasdf
+            File basePath = Path.of("./").toFile(); //Replace this with the actual base path
+            String filename = Path.of(request.getParameter("id")).toFile().getCanonicalPath();
+            if (!filename.startsWith(basePath.getCanonicalPath())) {
+                throw new IllegalArgumentException("Invalid file path");
+            }
+            (new File(filename)).exists();
 
 //            if (catPicture.getName().toLowerCase().contains("path-traversal-secret.jpg")) {
 //                return ResponseEntity.ok()
